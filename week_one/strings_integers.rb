@@ -66,18 +66,15 @@
 # total_char = a + b + c + d
 # puts total_char.length
 # puts total_char.length / 4
-
-# Birthday
-name = "Aaron"
-age = 5
-puts "Happy birthday, #{name}!"
-
-age.times do
-  puts "happy"
-end
+#
+# # Birthday
+# name = "Aaron"
+# age = 5
+# happy = "happy " * (age - 1)
+# puts "Happy #{happy} birthday, #{name}!"
 
 # String Compression
 word = "Denver"
-middle = word[1..4]
-first_last = word[0] middle.length word[5]
+middle = word[1..-2].size
+first_last = word[0] middle word[-1]
 puts first_last
