@@ -76,5 +76,5 @@
 # String Compression
 word = "Denver"
 middle = word[1..-2].size
-first_last = word[0] middle word[-1]
+first_last = word[0] + middle.to_s + word[-1].capitalize
 puts first_last
