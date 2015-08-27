@@ -27,7 +27,7 @@ loop do # Main Game Loop
 end
 
 
-# Instructions
+# Instructions - http://www.hasbro.de/manuals/14151i02.pdf
 i = print instructions.chomp
 
 instructions = "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors and positions of the hidden Code pegs.
