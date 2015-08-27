@@ -13,6 +13,14 @@
 # 9. If incorrect, loop back to "user selection" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
+def mystery_sequence
+  # rand colors for secret code
+end
+
+def user_guess
+  # compare guess against secret code
+end
+
 
 puts "Welcome to MASTERMIND."
 
