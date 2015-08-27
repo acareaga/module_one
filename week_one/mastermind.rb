@@ -13,16 +13,23 @@
 # 9. If incorrect, loop back to "user selection" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
+def prompt
+  # prompt game play, instructions, or quit
+end
+
 def mystery_sequence
-  # rand colors for secret code
+  color = ["r", "g", "b", "y"]
+  rand[color]
+  # need to fix
 end
 
 def user_guess
   # compare guess against secret code
 end
 
+p mystery_sequence
 
-puts "Welcome to MASTERMIND."
+p "Welcome to MASTERMIND."
 
 loop do
 
@@ -33,12 +40,7 @@ loop do
   instructions || i
   quit || q
 
-  secret = RRRR
-  puts "The secret is #{secret}"
-
 # Instructions
-  i = print instructions.chomp
-
   instructions = "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors and positions of the hidden Code pegs.
 
   Red: you guessed a correct color in the correct position
