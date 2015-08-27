@@ -17,16 +17,18 @@ class MapPatternTest < Minitest::Test
     numbers = [1, 2, 3, 4, 5]
     doubles = []
     numbers.each do |number|
-      # Your code goes here
+      doubles << number * 2
     end
     assert_equal [2, 4, 6, 8, 10], doubles
   end
 
   def test_squares
-    skip
     numbers = [1, 2, 3, 4, 5]
     squares = []
-    # Your code goes here
+
+    numbers.each do |number|
+      squares << (number * number)
+    end
     assert_equal [1, 4, 9, 16, 25], squares
   end
 
