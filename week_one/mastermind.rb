@@ -13,47 +13,43 @@
 # 9. If incorrect, loop back to "user selection" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
-# def prompt
-#   # prompt game play, instructions, or quit
-# end
-#
+play = "play"
+instructions = "instructions"
+quit = "quit"
+
+user_guess = ""
+@mystery_sequence = " rgby"
+
 # def mystery_sequence
-#   color = ["r", "g", "b", "y"]
-#   rand[color]
+#   rand(color)
 #   # need to fix
 # end
-#
-# def user_guess
-#   # compare guess against secret code
-# end
-#
-# p mystery_sequence
 
 def play_game
   print "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
 
         What's your guess?"
 
-    guess = gets.chomp
+  user_guess = gets.chomp # compare against mystery_sequence
+
+  if user_guess == @mystery_sequence
+  puts "Congratulations! You guessed the sequence #{user_guess} in 8 guesses over 4 minutes, 22 seconds. Do you want to (p)lay again or (q)uit?"
+
+  else
+    puts "I'm sorry, that is incorrect. You got two colors and no positions correct. Please guess again:"
+  end
 end
 
-play = "play"
-instructions = "instructions"
-quit = "quit"
+puts @mystery_sequence
 
 puts "Welcome to MASTERMIND."
 
-loop do
-
+loop do # Main Game Loop
   puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   answer = gets.chomp
 
   if answer == "i"
-    puts "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors and positions of the hidden Code pegs.
-
-    Red: you guessed a correct color in the correct position
-    White: you guessed a correct color in an incorrect position
-    Blank: you guessed an incorrect color"
+    puts "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs."
   elsif answer == "q"
     break
   else answer == "p"
@@ -61,11 +57,15 @@ loop do
   end
 end
 
-
-# # Winning Guess
-#   print "Congratulations! You guessed the correct sequence: #{guess}.
+# if user_guess == mystery_sequence
+#   puts "Congratulations! You guessed the sequence #{user_guess} in 8 guesses over 4 minutes, 22 seconds.
 #
-#   Do you want to (p)lay again or (q)uit?"
-
+#       Do you want to (p)lay again or (q)uit?"
+#   if answer == "q"
+#     #break
+#   else answer == "p"
+#     play_game
+#   end
+# end
 
 # After generating random board:  next easiest step is how you can determine how many colors are in the correct position
