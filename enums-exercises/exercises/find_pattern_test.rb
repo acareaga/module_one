@@ -16,14 +16,17 @@ class FindPatternTest < Minitest::Test
     assert_equal "unicorn", found
   end
 
-  def test_no_waldo
-    words = ["scarf", "sandcastle", "flag", "pretzel", "crow", "key"]
-    found = nil
-    words.each do |word|
-      # Your code goes here
-    end
-    assert_equal nil, found
-  end
+  # def test_no_waldo
+  #   words = ["scarf", "sandcastle", "flag", "pretzel", "crow", "key"]
+  #   found = nil
+  #   words.each do |word|
+  #     if word.find == "waldo"
+  #       found = word
+  #       break
+  #     end
+  #   end
+  #   assert_equal nil, found
+  # end
 
   def test_find_waldo
     skip
