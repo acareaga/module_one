@@ -20,7 +20,7 @@ require 'pry'
 # quit = "quit"
 # user_guess = ""
 
-# need to fix guess again quit loop and min, sec, guess counters
+# need to fix min, sec, guess counters
 
 def play_game # Method for initial play and beyond
 
@@ -51,29 +51,26 @@ def play_game # Method for initial play and beyond
 
     if user_guess.chars == mystery_sequence
       puts "Congratulations! You guessed the sequence #{user_guess.upcase} in #{guess_counter} guesses over #{minutes_played} minutes and #{seconds_played} seconds. Do you want to (p)lay again or (q)uit?"
-      second_game_user_choice = gets.chomp
-      if (second_game_user_choice == "p") || (second_game_user_choice =='play')
-          play_game_without_initial_prompt
-      else
-          exit
-      end
-      elsif (second_game_user_choice == "q") || (second_game_user_choice == "quit")
-          exit
-      else
-          puts "I'm sorry, that is incorrect. You got #{colors_correct} colors and #{positions_correct} positions correct. Please guess again:"
+      second_game_user_choice = gets.chomp # need to fix
+    elsif (user_guess == "p") || (user_guess == "P") || (user_guess =='play')
+      play_game_without_initial_prompt
+    elsif (user_guess == "q") || (user_guess == "Q") || (user_guess == "quit")
+      exit
+    else
+      puts "I'm sorry, that is incorrect. You got #{colors_correct} colors and #{positions_correct} positions correct. Please guess again."
     end
   end
 end
 
-def first_game_stuff_and_play_a_game
-  # Main Game Loop
+
+def first_game_stuff_and_play_a_game # First game with initial instructions
   first_game_user_choice = gets.chomp
-  if (first_game_user_choice == "i") || (first_game_user_choice == "instructions")
-    puts "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs. Please enter (p)lay, (i)nstructions, or (q)uit"
+  if (first_game_user_choice == "i") || (first_game_user_choice == "I") || (first_game_user_choice == "instructions")
+    puts "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs."
     play_game
-  elsif (first_game_user_choice == "q") || (first_game_user_choice == "quit")
+  elsif (first_game_user_choice == "q") || (first_game_user_choice == "Q") || (first_game_user_choice == "quit")
     exit
-  else (first_game_user_choice == "p") || (first_game_user_choice == "play")
+  else (first_game_user_choice == "p") || (first_game_user_choice == "P") || (first_game_user_choice == "play")
     puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
     play_game
   end
