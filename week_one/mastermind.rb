@@ -13,74 +13,77 @@
 # 9. If incorrect, loop back to "user selection" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
-require 'pry'
-
 # play = "play"
 # instructions = "instructions"
 # quit = "quit"
-# user_guess = ""
 
-# need to fix min, sec, guess counters
+require 'pry'
+
+$color = [ "r", "b", "g", "y" ]
+$user_guess = ""
+$mystery_sequence = ["r", "r", "r", "r"] # $color.sample(4) remove to allow random generation
+
+$positions_correct = 0 # count positions correct
+# if # color[] == mystery_sequence[]
+#   $positions_correct += 1
+# end
+
+$colors_correct = 0 # count colors correct
+# if # color[""] == mystery_sequence[""]
+#   colors_correct += 1
+# end
+
+$number_of_guesses = 0 # count the number of times it takes to win
+# if # user_guess.chars != mystery_sequence
+#    number_of_guesses + 1
+# end
+
+# need to fix sec, guess counters
 
 def play_game # Method for initial play and beyond
 
-  color = [ "r", "b", "g", "y" ]
-  mystery_sequence = ["r", "r", "r", "r"] # color.sample(4) remove to allow random generation
-
-  minutes_played = 5 # record game play time
-  seconds_played = 20
-
-  guess_counter = 0 # count the number of times it takes to win
-  if # user_guess =! mystery_sequence
-    guess_counter += 1
-  end
-
-  colors_correct = 0 # count colors correct
-  if # color[""] == mystery_sequence[""]
-    colors_correct += 1
-  end
-
-  positions_correct = 0 # count positions correct
-  if # color[] == mystery_sequence[]
-    positions_correct += 1
-  end
+  start_time = Time.now
 
   loop do
     puts "What's your guess?"
-    user_guess = gets.chomp
+    $user_guess = gets.chomp.downcase
 
-    if user_guess.chars == mystery_sequence
-      puts "Congratulations! You guessed the sequence #{user_guess.upcase} in #{guess_counter} guesses over #{minutes_played} minutes and #{seconds_played} seconds. Do you want to (p)lay again or (q)uit?"
-      second_game_user_choice = gets.chomp # need to fix
-    elsif (user_guess == "p") || (user_guess == "P") || (user_guess =='play')
+    if $user_guess.chars == $mystery_sequence
+      end_time = Time.now
+      minutes_played = end_time.min - start_time.min
+      seconds_played = end_time.sec - start_time.sec * -1 # need to fix +/- sec on min change
+      puts "Congratulations! \nYou guessed the sequence #{$user_guess.upcase} in #{$number_of_guesses} guesses over #{minutes_played} minutes and #{seconds_played} seconds. \nDo you want to (p)lay again or (q)uit?"
+      play_again_or_quit = gets.chomp
+      if play_again_or_quit.downcase.include?("q")
+        exit
+      end
+    elsif $user_guess.downcase.include?("p")
       play_game_without_initial_prompt
-    elsif (user_guess == "q") || (user_guess == "Q") || (user_guess == "quit")
+    elsif $user_guess.downcase.include?("q")
       exit
     else
-      puts "I'm sorry, that is incorrect. You got #{colors_correct} colors and #{positions_correct} positions correct. Please guess again."
+      puts "I'm sorry, that is incorrect. \nYou got #{$colors_correct} colors and #{$positions_correct} positions correct. Please guess again."
     end
   end
 end
 
-
-def first_game_stuff_and_play_a_game # First game with initial instructions
-  first_game_user_choice = gets.chomp
-  if (first_game_user_choice == "i") || (first_game_user_choice == "I") || (first_game_user_choice == "instructions")
-    puts "The objective is to break the secret code in the fewest number of guesses. Try to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs."
+def first_game_info_and_play_game # First game with initial instructions
+  initial_user_response = gets.chomp
+  if initial_user_response.downcase.include?("i")
+    puts "The objective is to break the secret code in the fewest number of guesses. \nTry to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs."
     play_game
-  elsif (first_game_user_choice == "q") || (first_game_user_choice == "Q") || (first_game_user_choice == "quit")
+  elsif initial_user_response.downcase.include?("q")
     exit
-  else (first_game_user_choice == "p") || (first_game_user_choice == "P") || (first_game_user_choice == "play")
-    puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+  else initial_user_response.downcase.include?("p")
+    puts "I've generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. \nUse (q)uit at any time to end the game."
     play_game
   end
 end
 
 def play_game_without_initial_prompt
-  puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+  puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. \nUse (q)uit at any time to end the game."
   play_game
 end
 
-puts "Welcome to MASTERMIND."
-puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-first_game_stuff_and_play_a_game
+puts "Welcome to MASTERMIND. \nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
+first_game_info_and_play_game
