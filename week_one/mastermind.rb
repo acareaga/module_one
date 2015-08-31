@@ -14,7 +14,7 @@
 # 10. Repeat 6-9 until winning selection or user quits
 
 @colors = [ "r", "b", "g", "y" ]
-@mystery_sequence = ["r", "r", "r", "r"] # @colors.sample(4)
+@mystery_sequence = @colors.sample(4) # ["r", "r", "r", "r"]
 @user_guess = ""
 @number_of_guesses = 1
 @positions_correct = 0
