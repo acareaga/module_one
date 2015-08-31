@@ -1,10 +1,8 @@
 ATOM
 
-Split Windows = Command (k) ->
+Split Windows = cmd (k) (->)
 Close Windows = cmd (w)
-
-Opening / switching tabs
-Switching between tabs
+Switch Windows = cmd (k) (->)
 
 SEEING IS BELIEVING
 
