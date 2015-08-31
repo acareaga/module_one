@@ -90,3 +90,25 @@ else initial_user_response.downcase.include?("p")
     end
   end
 end
+
+
+def colors_correct_counter
+  positions_correct = 0
+  colors_correct = 0
+  @user_guess.each_with_index do |color, index|
+    if color == @mystery_sequence[color]
+      colors_correct += 1
+    else index == @mystery_sequence[index]
+      positions_correct += 1
+    end
+  end
+end
+
+def positions_correct_counter
+  positions_correct = 0
+  @user_guess.each_with_index do |color, index|
+    if index == @mystery_sequence[index]
+      positions_correct += 1
+    end
+  end
+end

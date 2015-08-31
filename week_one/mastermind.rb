@@ -14,14 +14,13 @@
 # 10. Repeat 6-9 until winning selection or user quits
 
 @colors = [ "r", "b", "g", "y" ]
+@mystery_sequence = ["r", "r", "r", "r"] # @colors.sample(4)
 @user_guess = ""
-@mystery_sequence = @colors.sample(4) # ["r", "r", "r", "r"]
-@incorrect_guess_try_again_user_feedback = ""
+@number_of_guesses = 1
+@positions_correct = 0
+@colors_correct = 0
 @start_time = 0
 @end_time = 0
-@number_of_guesses = 1
-@colors_correct = 0
-@positions_correct = 0
 
 def play_game # main sequence to play game
   @start_time = Time.now
