@@ -13,61 +13,45 @@
 # 9. If incorrect, loop back to "user selection" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
-# play = "play"
-# instructions = "instructions"
-# quit = "quit"
+@colors = [ "r", "b", "g", "y" ]
+@user_guess = ""
+@mystery_sequence = ["r", "r", "r", "r"] # @colors.sample(4)
+@incorrect_guess_try_again_user_feedback = ""
+@start_time = 0
+@end_time = 0
+@number_of_guesses = 0
 
-require 'pry'
-
-$color = [ "r", "b", "g", "y" ]
-$user_guess = ""
-$mystery_sequence = ["r", "r", "r", "r"] # $color.sample(4) remove to allow random generation
-
-$positions_correct = 0 # count positions correct
-# if # color[] == mystery_sequence[]
-#   $positions_correct += 1
-# end
-
-$colors_correct = 0 # count colors correct
-# if # color[""] == mystery_sequence[""]
-#   colors_correct += 1
-# end
-
-$number_of_guesses = 0 # count the number of times it takes to win
-# if # user_guess.chars != mystery_sequence
-#    number_of_guesses + 1
-# end
-
-# need to fix sec, guess counters
-
-def play_game # Method for initial play and beyond
-
-  start_time = Time.now
-
+def play_game # main sequence for game play
+  @start_time = Time.now
   loop do
     puts "What's your guess?"
-    $user_guess = gets.chomp.downcase
-
-    if $user_guess.chars == $mystery_sequence
-      end_time = Time.now
-      minutes_played = end_time.min - start_time.min
-      seconds_played = end_time.sec - start_time.sec * -1 # need to fix +/- sec on min change
-      puts "Congratulations! \nYou guessed the sequence #{$user_guess.upcase} in #{$number_of_guesses} guesses over #{minutes_played} minutes and #{seconds_played} seconds. \nDo you want to (p)lay again or (q)uit?"
-      play_again_or_quit = gets.chomp
-      if play_again_or_quit.downcase.include?("q")
-        exit
-      end
-    elsif $user_guess.downcase.include?("p")
+    @user_guess = gets.chomp.downcase
+    if @user_guess.chars == @mystery_sequence
+      winning_sequence_play_again_or_quit
+    elsif @user_guess.downcase.include?("p")
       play_game_without_initial_prompt
-    elsif $user_guess.downcase.include?("q")
+    elsif @user_guess.downcase.include?("q")
       exit
     else
-      puts "I'm sorry, that is incorrect. \nYou got #{$colors_correct} colors and #{$positions_correct} positions correct. Please guess again."
+      @number_of_guesses += 1
+      puts "I'm sorry, that is incorrect. You got #{@colors_correct} colors and #{@positions_correct} positions correct. Please guess again."
     end
   end
 end
 
-def first_game_info_and_play_game # First game with initial instructions
+def invalid_guess_try_again
+  if @user_guess.length < 4
+    puts "Your guess is too short. Please enter a valid sequence."
+    play_game
+  elsif @user_guess.length > 4
+    puts "Your guess is too long. Please enter a valid sequence."
+    play_game
+  else
+    play_game
+  end
+end
+
+def first_game_info_and_play_game
   initial_user_response = gets.chomp
   if initial_user_response.downcase.include?("i")
     puts "The objective is to break the secret code in the fewest number of guesses. \nTry to guess the exact colors (R, G, B, Y) in the positions of the hidden Code pegs."
@@ -83,6 +67,35 @@ end
 def play_game_without_initial_prompt
   puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. \nUse (q)uit at any time to end the game."
   play_game
+end
+
+def winning_sequence_play_again_or_quit
+  @end_time = Time.now
+  minutes_played = @end_time.min - @start_time.min
+  seconds_played = @end_time.sec - @start_time.sec # need to fix +/- sec on min change
+  puts "Congratulations! \nYou guessed the sequence #{@user_guess.upcase} in #{@number_of_guesses} guesses over #{minutes_played} minutes and #{seconds_played} seconds. \nDo you want to (p)lay again or (q)uit?"
+  play_again_or_quit = gets.chomp
+  if play_again_or_quit.downcase.include?("q")
+    exit
+  end
+end
+
+def colors_correct_counter
+  colors_correct = 0
+  @user_guess.each_with_index do |color, index|
+    if color == @mystery_sequence[color]
+      colors_correct += 1
+    end
+  end
+end
+
+def positions_correct_counter
+  positions_correct = 0
+  @user_guess.each_with_index do |color, index|
+    if index == @mystery_sequence[index]
+      positions_correct += 1
+    end
+  end
 end
 
 puts "Welcome to MASTERMIND. \nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
