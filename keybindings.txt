@@ -1,0 +1,13 @@
+ATOM
+
+Split Windows = Command (k) ->
+Close Windows = cmd (w)
+
+Opening / switching tabs
+Switching between tabs
+
+SEEING IS BELIEVING
+
+annotate every line = Command + Option + B
+annotate marked lines (mark them by placing # => after or below) = Command+Option+N
+remove annotations = Command+Option+V

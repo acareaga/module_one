@@ -35,7 +35,7 @@ def play_game # main sequence to play game
       exit
     else
       @number_of_guesses += 1
-      puts "I'm sorry, that is incorrect. You got #{@colors_correct} colors and #{@positions_correct} positions correct. Please guess again."
+      incorrect_guess_user_feedback
     end
   end
 end
@@ -86,6 +86,7 @@ def incorrect_guess_user_feedback # colors and positions guessed correctly, need
     else index == @mystery_sequence[index]
       @positions_correct += 1
     end
+    puts "I'm sorry, that is incorrect. You got #{@colors_correct} colors and #{@positions_correct} positions correct. Please guess again."
   end
 end
 
