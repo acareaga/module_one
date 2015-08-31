@@ -16,37 +16,51 @@ class FindPatternTest < Minitest::Test
     assert_equal "unicorn", found
   end
 
-  # def test_no_waldo
-  #   words = ["scarf", "sandcastle", "flag", "pretzel", "crow", "key"]
-  #   found = nil
-  #   words.each do |word|
-  #     if word.find == "waldo"
-  #       found = word
-  #       break
-  #     end
-  #   end
-  #   assert_equal nil, found
-  # end
+  def test_no_waldo
+    words = ["scarf", "sandcastle", "flag", "pretzel", "crow", "key"]
+    found = nil
+    words.each do |word|
+      if word.include?("waldo")
+        found = word
+        break
+      end
+    end
+    assert_equal nil, found
+  end
 
   def test_find_waldo
-    skip
     words = ["noise", "dog", "fair", "house", "waldo", "bucket", "fish"]
     found = nil
-    # Your code goes here
+    words.each do |word|
+      if word.include?("waldo")
+        found = word
+        break
+      end
+    end
     assert_equal "waldo", found
   end
 
   def test_cannot_find_3_letter_words
-    skip
     words = ["piglet", "porridge", "bear", "blueberry"]
-    # Your code goes here
+    found = nil
+    words.each do |word|
+      if word.length == 3
+        found = word
+        break
+      end
+    end
     assert_equal nil, found
   end
 
   def test_find_13
-    skip
     numbers = [2, 13, 19, 8, 3, 27]
-    # Your code goes here
+    found = nil
+    numbers.each do |num|
+      if num = 13
+        found = num
+        break
+      end
+    end
     assert_equal 13, found
   end
 
