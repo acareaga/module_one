@@ -17,8 +17,6 @@
 @mystery_sequence = ["r", "r", "r", "r"] # @colors.sample(4)
 @user_guess = ""
 @number_of_guesses = 1
-@positions_correct = 0
-@colors_correct = 0
 @start_time = 0
 @end_time = 0
 
@@ -35,7 +33,7 @@ def play_game # main sequence to play game
       exit
     else
       @number_of_guesses += 1
-      puts "I'm sorry, that is incorrect. You got #{@colors_correct} colors and #{@positions_correct} positions correct. Please guess again."
+      incorrect_guess_user_feedback
     end
   end
 end
@@ -80,13 +78,17 @@ def winning_sequence_play_again_or_quit # winning guess, play again or quit
 end
 
 def incorrect_guess_user_feedback # colors and positions guessed correctly, needs work
-  @user_guess.each_with_index do |color, index|
-    if color == @mystery_sequence[color]
-      @colors_correct += 1
-    else index == @mystery_sequence[index]
-      @positions_correct += 1
+  positions_correct = 0
+  colors_correct = 0
+  feedback = []
+  @user_guess.chars.each_with_index do |color, index|
+    if color == @mystery_sequence[index]
+      colors_correct += 1
+      positions_correct += 1
+      feedback << "I'm sorry, that is incorrect. You got #{colors_correct} colors and #{positions_correct} positions correct. Please guess again."
     end
   end
+  puts feedback[feedback.length - 1]
 end
 
 puts "Welcome to MASTERMIND. \nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
