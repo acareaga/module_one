@@ -13,8 +13,8 @@
 # 9. If incorrect, provide colors and positions correct, and loop back to "user guess" #6
 # 10. Repeat 6-9 until winning selection or user quits
 
-@colors = [ "r", "b", "g", "y" ]
-@mystery_sequence = ["r", "r", "r", "r"] # @colors.sample(4)
+# @colors = [ "r", "b", "g", "y" ]
+# @mystery_sequence = # ["r", "r", "r", "r"]
 @user_guess = ""
 @number_of_guesses = 1
 @start_time = 0
