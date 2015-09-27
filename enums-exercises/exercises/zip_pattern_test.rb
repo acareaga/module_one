@@ -19,17 +19,18 @@ class ZipPatternTest < Minitest::Test
     list2 = [29, 23, 26]
     prices = []
     list1.length.times do |i|
-      # Your code goes here
+      prices << [list1[i], list2[i]]
     end
     assert_equal [["NY Strip Steak", 29], ["Lamb Stew", 23], ["Grilled Salmon", 26]], prices
   end
 
   def test_lottery_tickets
-    skip
     list1 = ["Alice", "Bob", "Charlie"]
     list2 = [298, 166, 237]
     tickets = []
-    # Your code goes here
+    list1.length.times do |i|
+      tickets << [list1[i], list2[i]]
+    end
     assert_equal [["Alice", 298], ["Bob", 166], ["Charlie", 237]], tickets
   end
 
@@ -42,10 +43,12 @@ class ZipPatternTest < Minitest::Test
   end
 
   def test_solitaire
-    skip
     list1 = ["Ace", "6", "10", "Queen"]
     list2 = [:clubs, :diamonds, :hearts, :spades]
-    # Your code goes here
+    cards = []
+    list1.length.times do |i|
+      cards << [list1[i], list2[i]]
+    end
     assert_equal [["Ace", :clubs], ["6", :diamonds], ["10", :hearts], ["Queen", :spades]], cards
   end
 

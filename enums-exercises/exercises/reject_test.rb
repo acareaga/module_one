@@ -13,52 +13,60 @@ class RejectTest < Minitest::Test
   end
 
   def test_remove_vowels
+    skip
+    vowels = "a", "e", "i", "o", "u"
     letters = ["a", "l", "l", " ", "y", "o", "u", "r", " ", "b", "a", "s", "e", " ", "a", "r", "e", " ", "b", "e", "l", "o", "n", "g", " ", "t", "o", " ", "u", "s"]
     remaining = letters.reject do |letter|
-      # Your code goes here
+      letter.include?(vowels)
     end
     assert_equal ["l", "l", " ", "r", " ", "b", "s", " ", "r", " ", "b", "l", "n", "g", " ", "t", " ", "s"], remaining
   end
 
   def test_remove_numbers_divisible_by_3
-    skip
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    # Your code goes here
+    remaining = numbers.reject do |i|
+      i % 3 == 0
+    end
     assert_equal [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20], remaining
   end
 
   def test_remove_words_with_more_than_three_letters
-    skip
     words = ["pill", "bad", "finger", "cat", "blue", "dog", "table", "red"]
-    # Your code goes here
+    selected = words.reject do |word|
+      word.size > 3
+    end
     assert_equal ["bad", "cat", "dog", "red"], selected
   end
 
   def test_remove_words_ending_in_e
-    skip
     words = ["are", "you", "strike", "thinking", "belt", "piece", "warble", "sing", "pipe"]
-    # Your code goes here
+    selected = words.reject do |word|
+      word.chars.last == "e"
+    end
     assert_equal ["you", "thinking", "belt", "sing"], selected
   end
 
   def test_remove_words_ending_in_ing
-    skip
     words = ["bring", "finger", "drought", "singing", "bingo", "purposeful"]
-    # Your code goes here
+    selected = words.reject do |word|
+      word[-3..-1] == "ing"
+    end
     assert_equal ["finger", "drought", "bingo", "purposeful"], selected
   end
 
   def test_remove_words_containing_e
-    skip
     words = ["four", "red", "five", "blue", "pizza", "purple"]
-    # Your code goes here
+    selected = words.reject do |word|
+      word.include?("e")
+    end
     assert_equal ["four", "pizza"], selected
   end
 
   def test_remove_dinosaurs
-    skip
     animals = ["tyrannosaurus", "narwhal", "eel", "achillesaurus", "qingxiusaurus"]
-    # Your code goes here
+    notasaurus = animals.reject do |animal|
+      animal[-3..-1] == "rus"
+    end
     assert_equal ["narwhal", "eel"], notasaurus
   end
 
